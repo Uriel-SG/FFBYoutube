@@ -4,6 +4,7 @@ import os
 import webbrowser
 import pytube
 import customtkinter as ct
+import pyperclip
 
 # Output dir
 desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
@@ -60,8 +61,14 @@ def download_audio():
     except:
         tkinter.messagebox.showerror(title="Error", message="An error occured with the download")
 
+
+def paste_link():
+    entry.insert(tk.END, pyperclip.paste())
+
+
 def exit_program():
     finestra.destroy()
+
 
 # Link label and text
 link_label = tk.Label(frame1, text="Paste your link here: ", bg="light blue", height=5)
@@ -69,6 +76,9 @@ link_label.pack()
 
 entry = ct.CTkEntry(master=frame1, placeholder_text="Your Link", width=350)
 entry.pack(padx=20, pady=10)
+
+paste_butt = tk.Button(frame1, text="Paste", width=6, command=paste_link)
+paste_butt.pack()
 
 empty = tk.Label(frame1, bg="light blue")
 empty.pack()
@@ -81,7 +91,7 @@ button.pack(padx=20, pady=10, side=tk.RIGHT)
 
 info = tk.Label(frame2, bg="light blue", text="Video informations")
 info.pack()
-informations = tk.Text(frame2, width=50, height=18, padx=15, pady=15, state="disabled")
+informations = tk.Text(frame2, width=50, height=16, padx=15, pady=15, state="disabled")
 informations.tag_configure("center", justify='center')
 informations.pack()
 exit_butt = tk.Button(frame2, text="Exit", width=9, command=exit_program)
@@ -98,7 +108,9 @@ def display_info(yt):
     informations.insert(tk.END, f"\n\nViews:\n{yt.views}")
     informations.insert(tk.END, f"\n\nLength of video:\n{yt.length} seconds")
     informations.tag_add("center", "1.0", "end")
-    
+
+
+
 
 
 finestra.mainloop()
