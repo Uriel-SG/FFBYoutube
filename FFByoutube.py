@@ -9,11 +9,9 @@ import pyperclip
 # Output dir
 desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 desktop_dir = os.listdir(desktop)
+desk_path = desktop + "\FFBYoutube"
 if "FFBYoutube" not in desktop_dir:
-    desk_path = desktop + "\FFBYoutube"
     os.mkdir(desk_path)
-else:
-    desk_path = desktop + "\FFBYoutube"
 
 
 finestra = tk.Tk()
@@ -91,9 +89,11 @@ button.pack(padx=20, pady=10, side=tk.RIGHT)
 
 info = tk.Label(frame2, bg="light blue", text="Video informations")
 info.pack()
+
 informations = tk.Text(frame2, width=50, height=16, padx=15, pady=15, state="disabled")
 informations.tag_configure("center", justify='center')
 informations.pack()
+
 exit_butt = tk.Button(frame2, text="Exit", width=9, command=exit_program)
 exit_butt.pack(padx=20, pady=20)
 
@@ -108,9 +108,6 @@ def display_info(yt):
     informations.insert(tk.END, f"\n\nViews:\n{yt.views}")
     informations.insert(tk.END, f"\n\nLength of video:\n{yt.length} seconds")
     informations.tag_add("center", "1.0", "end")
-
-
-
 
 
 finestra.mainloop()
